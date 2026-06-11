@@ -12,6 +12,8 @@ Traditional databases update data in place. LSM engines append everything to a l
 - Reads check the MemTable first then search SSTables newest to oldest
 - Compaction periodically merges SSTables to reclaim space and speed up reads
 
+Complements [build-your-own-database](https://github.com/Hanningtone03/build-your-own-database); that project covers the SQL layer, this one covers how data is actually written to disk.
+
 ## Project structure
 
 ```
