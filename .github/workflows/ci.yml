@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Syntax check
+        run: python -m py_compile src/engine.py src/wal.py src/memtable.py src/sstable.py src/compaction.py src/cli.py
+      - name: Test put and get
+        run: |
+          python -m src.cli put name Hanningtone
+          python -m src.cli get name
+          python -m src.cli delete name
+          python -m src.cli get name
